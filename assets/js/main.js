@@ -1,15 +1,25 @@
+const { createApp } = Vue;
 
-todos: [
-	{
-		text: 'Fare i compiti',
-		done: false
-	},
-	{
-		text: 'Fare la spesa',
-		done: true
-	},
-	{
-		text: 'Fare il bucato',
-		done: false
-	}
-]
+const app = createApp({
+    data() {
+        return {
+            newTask: '',
+            errore: false,
+            lista: [
+                {
+                    testo: 'Fare i compiti',
+                    done: false,
+                },
+                {
+                    testo: 'Fare la spesa',
+                    done: true,
+                },
+                {
+                    testo: 'Fare il bucato',
+                    done: false,
+                }
+            ]
+        }
+    },
+    methods:
+}).mount('#app');

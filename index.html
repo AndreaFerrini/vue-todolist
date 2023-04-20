@@ -10,7 +10,12 @@
 </head>
 <body>
     <div id="app">
-
+        <div class="container header">
+            <h3 class="text-center display-4 fw-bold mb-5 text-uppercase">My ToDoList</h3>
+            <input type="text" v-model="newTask" @keyup.enter="aggiungiTask">
+            <span @click="aggiungiTask" class="button-add">Aggiungi</span>
+            <div v-if="errore" class="fs-5 errore">Il task deve essere di almeno 3 caratteri</div>
+        </div>
 
     </div>
 
