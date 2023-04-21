@@ -4,19 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue To do List</title>
+    <title>Vue ToDoList</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <div id="app">
-        <div class="container header">
-            <h3 class="text-center display-4 fw-bold mb-5 text-uppercase">My ToDoList</h3>
-            <input type="text" v-model="newTask" @keyup.enter="aggiungiTask">
-            <span @click="aggiungiTask" class="button-add">Aggiungi</span>
-            <div v-if="errore" class="fs-5 errore">Il task deve essere di almeno 3 caratteri</div>
-        </div>
+        <div class="d-flex flex-column fw-bold">
+            <div class="container header">
+                <h1 class="text-center">My ToDoList</h1>
+                <div class="text-center">
+                    <input type="text" v-model="testoInput" @KeyUp.enter="creaTodo">
+                    <button @click="creaTodo">Crea TodoList</button>
+                    <p v-if=" error "  class="alert alert-danger" role="alert">
+                        il testo deve contenere almeno 5 caratteri
+                    </p>
+                </div>
+    
+                <div class="bg-secondary rounded mt-3">
+                    <div v-for="(elem, index) in tasks"
+                        :key="index"
+                        class="border-bottom d-flex justify-content-between align-items-center p-3"
+                        :class=" (index % 2 == 0) ? 'bg-secondary' : 'bg-dark'">
+                        <p class="m-0">{{ elem }}</p>
+                        <i class="fa-solid fa-xmark" @click="cancellareLaTodo(index)"></i>
+                    </div>
 
+                    <div v-if="tasks.length == 0" class="border-bottom d-flex justify-content-between align-items-center p-3">
+                        <p class="m-0">Non ci sono Elementi nella todo 🧙‍♂️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

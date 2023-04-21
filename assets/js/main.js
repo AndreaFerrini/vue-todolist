@@ -1,25 +1,34 @@
-const { createApp } = Vue;
+const { createApp } = Vue
 
-const app = createApp({
-    data() {
-        return {
-            newTask: '',
-            errore: false,
-            lista: [
-                {
-                    testo: 'Fare i compiti',
-                    done: false,
-                },
-                {
-                    testo: 'Fare la spesa',
-                    done: true,
-                },
-                {
-                    testo: 'Fare il bucato',
-                    done: false,
-                }
-            ]
+createApp({
+  data() {
+    return {
+        testoInput: '',
+        tasks: [
+            'Fare la spesa',
+            'Fare i compiti',
+            'Fare il bucato'
+        ],
+        error: false
+    }
+  },
+  created(){
+
+  },
+  methods: {
+    creaTodo(){
+
+        if( this.testoInput != '' && this.testoInput.length > 5 ){
+
+            this.tasks.unshift(this.testoInput)
+            this.testoInput = ''
+            this.error = false
+        } else {
+            this.error = true
         }
     },
-    methods:
-}).mount('#app');
+    cancellareLaTodo(i){
+        this.tasks.splice( i, 1 )
+    }
+  }
+}).mount('#app')
